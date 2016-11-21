@@ -1,0 +1,18 @@
+<div class="jumbotron text-center">
+    <!-- <h1>Home Page 4 Life</h1> -->
+    <img class="logo" src="{{ logo }}" alt="My_Logo">
+    <p>{{ tagline }}</p>
+</div>
+<div class="text-center">
+  <p>First step is to load in all of your addresses.</p>
+  <p><form id        =  "uploadForm"
+      action         = "upload"
+      enctype   =  "multipart/form-data"
+      method    =  "post">
+  <input type="file" name="file" accept=".xls,.xlsx" multiple="false" />
+  <input type="submit" value="Route" name="submit" >
+  </form></p>
+  <!-- <md-button class="md-raised" ng-click="test();">Choose File</md-button>
+  <p>This was just a {{test}}</p> -->
+  <!-- <input type="file" name="file" accept=".xls,.xlsx" multiple="false" /> -->
+</div>

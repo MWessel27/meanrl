@@ -1,0 +1,40 @@
+<div class="jumbotron text-center">
+    <h1>Routes</h1>
+    <div>
+      <form name="AddressForm">
+        <md-input-container>
+          <label>Address</label>
+          <input name="address" ng-model="address">
+        </md-input-container>
+        <md-button class="md-raised" ng-click="createAddress(AddressForm.address);">Create Address</md-button>
+      </form>
+    </div>
+    <!-- <md-button class="md-raised" ng-click="getAddresses();">Create Address</md-button> -->
+    <style>
+      table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      }
+
+      td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+      }
+
+      tr:nth-child(even) {
+      background-color: #dddddd;
+      }
+    </style>
+    <table>
+      <tr>
+        <th>Address</th>
+        <th>Action</th>
+      </tr>
+    <tr ng-repeat="x in addresses">
+      <td>{{ x.address }}</td>
+      <td><md-button class="md-raised" ng-click="deleteAddress(x._id);">Delete</md-button></td>
+    </tr>
+  </table>
+</div>
