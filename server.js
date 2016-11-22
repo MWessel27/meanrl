@@ -4,6 +4,7 @@
 var express        = require('express');
 var app            = express();
 var bodyParser     = require('body-parser');
+var http           = require('http');
 var methodOverride = require('method-override');
 var mongoose       = require('mongoose');
 var multer         = require('multer');
@@ -109,7 +110,22 @@ app.post('/upload', function(req, res) {
           //error deleting the file
       }
   })
-  res.redirect('routes');
+  var obj = fs.readFileSync('uploads/upload.json');
+  var jsonContent = JSON.parse(obj);
+  var request = require('request');
+  for (var i=0;i<jsonContent.length;i++) {
+        // http.post('http://localhost:8080/api/routes/', {'address' : (jsonContent[i].address)});
+        request.post(
+            'http://localhost:8080/api/routes/',
+            { json: { address: jsonContent[i].address } },
+            function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    console.log(body)
+                }
+            }
+        );
+  }
+  res.redirect('/routes');
 });
 
 // start app ===============================================
