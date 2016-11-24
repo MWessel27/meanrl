@@ -40,7 +40,7 @@ var Route = require('./models/route');
                 res.send(err);
 
             route.address = req.body.address;  // update the bears info
-
+            route.isOrigin = req.body.isOrigin;
             // save the bear
             route.save(function(err) {
                 if (err)
@@ -68,11 +68,12 @@ var Route = require('./models/route');
         app.post('/api/routes', function(req, res) {
             var route = new Route();
             route.address = req.body.address;
+            route.isOrigin = 0;
             route.save(function(err) {
                     if (err)
                         res.send(err);
 
-                    res.json({ message: req.body.address });
+                    res.json({ message: route.address });
                 });
         });
 

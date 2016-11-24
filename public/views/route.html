@@ -1,16 +1,29 @@
 <div class="jumbotron text-center">
     <img class="logo" src="{{ logo }}" alt="My_Logo">
     <h1>Routes</h1>
+    <table>
+      <tr>
+        <th>Start Address</th>
+        <th>Action</th>
+      </tr>
+      <tr ng-repeat="x in addresses">
+        <td ng-if="x.isOrigin == 1">{{ x.address }}</td>
+        <td ng-if="x.isOrigin == 1">
+          <md-button class="md-raised" ng-click="removeOrigin(x._id, x.address);">Remove</md-button>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <br>
     <div>
       <form name="AddressForm">
         <md-input-container>
           <label>Address</label>
           <input name="address" ng-model="address">
         </md-input-container>
-        <md-button class="md-raised" ng-click="createAddress(AddressForm.address);">Create Address</md-button>
+        <md-button class="md-raised" ng-click="createAddress(AddressForm.address);">Add Address</md-button>
       </form>
     </div>
-    <!-- <md-button class="md-raised" ng-click="getAddresses();">Create Address</md-button> -->
     <style>
       table {
       font-family: arial, sans-serif;
@@ -34,8 +47,11 @@
         <th>Action</th>
       </tr>
     <tr ng-repeat="x in addresses">
-      <td>{{ x.address }}</td>
-      <td><md-button class="md-raised" ng-click="deleteAddress(x._id);">Delete</md-button></td>
+      <td ng-if="x.isOrigin == 0">{{ x.address }}</td>
+      <td ng-if="x.isOrigin == 0">
+        <md-button class="md-raised" ng-click="deleteAddress(x._id);">Delete</md-button>
+        <md-button class="md-raised" ng-click="setOrigin(x._id, x.address);">Set As Origin</md-button>
+      </td>
     </tr>
   </table>
 </div>
