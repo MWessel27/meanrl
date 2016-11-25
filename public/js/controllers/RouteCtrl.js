@@ -12,6 +12,7 @@ angular.module('RouteCtrl', []).controller('RouteController', function($scope, $
     $scope.createAddress = function(address) {
       $http.post('http://localhost:8080/api/routes/', {'address' : address.$viewValue});
       $scope.addresses = $scope.getAddresses();
+      document.getElementById("addressbox").value = "";
     }
 
     $scope.deleteAddress = function(addressId) {
