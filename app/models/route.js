@@ -5,7 +5,9 @@ var Schema   = mongoose.Schema;
 
 var RouteSchema   = new Schema({
     address: String,
-    isOrigin: String
+    isOrigin: String,
+    distanceFrom: String,
+    timeFrom: String
 });
 // define our nerd model
 // module.exports allows us to pass this to other files when it is called

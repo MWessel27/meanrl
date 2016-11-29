@@ -1,6 +1,7 @@
 <div class="jumbotron text-center">
     <img class="logo" src="{{ logo }}" alt="My_Logo">
-    <h1>Routes</h1>
+    <br>
+    <br>
     <table>
       <tr>
         <th>Start Address</th>
@@ -9,10 +10,13 @@
       <tr ng-repeat="x in addresses">
         <td ng-if="x.isOrigin == 1">{{ x.address }}</td>
         <td ng-if="x.isOrigin == 1">
-          <md-button class="md-raised" ng-click="removeOrigin(x._id, x.address);">Remove</md-button>
+          <md-button class="md-raised" ng-click="removeOrigin(x._id, x.address, x.timeFrom, x.distanceFrom);">Remove</md-button>
         </td>
       </tr>
     </table>
+    <br>
+    <br>
+    <div id="output"></div>
     <br>
     <br>
     <div>
@@ -50,7 +54,7 @@
       <td ng-if="x.isOrigin == 0">{{ x.address }}</td>
       <td ng-if="x.isOrigin == 0">
         <md-button class="md-raised" ng-click="deleteAddress(x._id);">Delete</md-button>
-        <md-button class="md-raised" ng-click="setOrigin(x._id, x.address);">Set As Origin</md-button>
+        <md-button class="md-raised" ng-click="setOrigin(x._id, x.address, x.timeFrom, x.distanceFrom);">Set As Origin</md-button>
       </td>
     </tr>
   </table>

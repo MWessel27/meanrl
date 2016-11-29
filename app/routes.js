@@ -41,6 +41,8 @@ var Route = require('./models/route');
 
             route.address = req.body.address;  // update the bears info
             route.isOrigin = req.body.isOrigin;
+            route.distanceFrom = req.body.distanceFrom;
+            route.timeFrom = req.body.timeFrom;
             // save the bear
             route.save(function(err) {
                 if (err)
@@ -69,6 +71,8 @@ var Route = require('./models/route');
             var route = new Route();
             route.address = req.body.address;
             route.isOrigin = 0;
+            route.distanceFrom = 0;
+            route.timeFrom = 0;
             route.save(function(err) {
                     if (err)
                         res.send(err);
