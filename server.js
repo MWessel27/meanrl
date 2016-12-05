@@ -42,6 +42,7 @@ app.use(express.static(__dirname + '/public'));
 
 // routes ==================================================
 require('./app/routes')(app); // configure our routes
+require('./app/trucks')(app);
 
 var storage = multer.diskStorage({ //multers disk storage settings
     destination: function (req, file, cb) {

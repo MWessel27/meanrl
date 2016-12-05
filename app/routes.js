@@ -1,5 +1,6 @@
 // grab the nerd model we just created
 var Route = require('./models/route');
+var Truck = require('./models/truck');
 
     module.exports = function(app) {
 
@@ -7,6 +8,20 @@ var Route = require('./models/route');
         // handle things like api calls
         // authentication routes
 
+        // @TODO: For whatever reason, I could not GET the trucks in the trucks.js
+        // but, POST works in trucks.js. No idea why a GET wont work there. It works here
+        app.get('/api/trucks', function(req, res) {
+            // // use mongoose to get all nerds in the database
+            Truck.find(function(err, trucks) {
+
+                // if there is an error retrieving, send the error.
+                                // nothing after res.send(err) will execute
+                if (err)
+                    res.send(err);
+
+                res.json(trucks); // return all nerds in JSON format
+            });
+        });
         // sample api route
         app.get('/api/routes', function(req, res) {
           //res.json({ message: 'hooray! welcome to our api!' });

@@ -1,6 +1,34 @@
 // angular.module('RouteCtrl', []).controller('RouteController', function($scope, $http, Route) {
-angular.module('RouteCtrl', []).controller('RouteController', function($scope, $http, Route, gservice) {
+angular.module('RouteCtrl', []).controller('RouteController', function($scope, $http, Route, Truck, gservice) {
     $scope.logo = 'images/rl.png';
+
+    $scope.crewSize = ('1 2 3 4 5 6 7 8 9 10').split(' ').map(function(num) {
+        return {size: num};
+      });
+
+    //set truck params
+    $scope.addTruck = function() {
+      $http.post('http://localhost:8080/api/trucks/', {'crewSize' : 1});
+      $scope.trucks = $scope.getTrucks();
+      $scope.reload;
+    }
+
+    $scope.deleteTruck = function(truckId) {
+      $http.delete('http://localhost:8080/api/trucks/'+truckId);
+      $scope.trucks = $scope.getTrucks();
+      $scope.reload;
+    }
+
+    $scope.getTrucks = function() {
+      $http.get('http://localhost:8080/api/trucks/').
+        then(function(response) {
+            $scope.trucks = response.data;
+        });
+    }
+
+    $scope.updateTruck = function(truckId, crewSize) {
+      $http.put('http://localhost:8080/api/trucks/'+truckId, {'crewSize' : crewSize, 'startTime' : 0, 'endTime' : 0, 'avgTime' : 0});
+    }
 
     $scope.getAddresses = function() {
       $http.get('http://localhost:8080/api/routes/').
@@ -69,6 +97,7 @@ angular.module('RouteCtrl', []).controller('RouteController', function($scope, $
       $scope.addresses = $scope.getAddresses();
     }
 
+    $scope.trucks = $scope.getTrucks();
     $scope.getOrigin();
     $scope.addresses = $scope.getAddresses();
 

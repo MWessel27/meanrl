@@ -2,6 +2,42 @@
     <img class="logo" src="{{ logo }}" alt="My_Logo">
     <br>
     <br>
+    <div>
+      <h1>Trucks</h1>
+      Hide Section: <input type="checkbox" ng-model="truckSection">
+      <div ng-hide="truckSection">
+      <md-button class="md-icon-button" aria-label="Custom Icon Button" ng-click="addTruck();">
+        <md-icon md-svg-src="images/plus_icon.svg"></md-icon>
+      </md-button>
+      <div class="row">
+        <div class="col-sm-3" ng-repeat="truck in trucks">
+          <md-card md-theme="default">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">Truck #{{$index + 1}}</span>
+                <!-- <md-icon md-svg-src="images/pick_up.svg"></md-icon> -->
+                <i class="material-icons" style="font-size:64px;">local_shipping</i>
+              </md-card-title-text>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="center center">
+              <md-input-container>
+                <label>Crew #</label>
+                <md-select ng-model="crewSizeSelected" ng-change="updateTruck(truck._id, crewSizeSelected);">
+                  <md-option ng-repeat="num in crewSize" ng-value="{{num.size}}" ng-selected="{{truck.crewSize === num.size ? 'true' : 'false' }}">
+                    {{num.size}}
+                  </md-option>
+                </md-select>
+              <md-button class="md-raised" ng-click="deleteTruck(truck._id);">Delete</md-button>
+            </md-card-actions>
+          </md-card>
+        </div>
+    </div>
+  </div>
+    <br>
+    <br>
+    <h1>Starting Address</h1>
+    Hide Section: <input type="checkbox" ng-model="originSection">
+    <div ng-hide="originSection">
     <table>
       <tr>
         <th>Start Address</th>
@@ -14,11 +50,19 @@
         </td>
       </tr>
     </table>
+  </div>
     <br>
     <br>
-    <div id="output"></div>
+    <div id="outputHeader"></div>
+    Hide Section: <input type="checkbox" ng-model="routeSection">
+    <div ng-hide="routeSection">
+      <div id="output"></div>
+    </div>
     <br>
     <br>
+    <h1>Address List</h1>
+    Hide Section: <input type="checkbox" ng-model="addressSection">
+    <div ng-hide="addressSection">
     <div>
       <form name="AddressForm">
         <md-input-container>
@@ -58,4 +102,5 @@
       </td>
     </tr>
   </table>
+</div>
 </div>

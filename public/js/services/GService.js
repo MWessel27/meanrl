@@ -29,10 +29,13 @@ angular.module('gservice', [])
           console.log('Error was: ' + status);
         } else {
           //now that we can get the distance from the origin properly, now to update the DB with the distances and Time
+          var outputHeaderDiv = document.getElementById('outputHeader');
+          outputHeaderDiv.innerHTML = '<h1>Truck #1 Route</h1>';
+          
           var outputDiv = document.getElementById('output');
           outputDiv.innerHTML = '';
 
-          var testDiv = '<h1>Truck #1 Route</h1>';
+          var testDiv = '';
           testDiv +='<table>' + '<tr>'+'<th>#</th>'+'<th>Address</th>'+'<th>Distance</th>'+'<th>Time</th>'+'</tr>';
             var results = [response];
 
