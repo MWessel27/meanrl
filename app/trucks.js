@@ -45,10 +45,10 @@ var Truck = require('./models/truck');
 
         app.post('/api/trucks', function(req, res) {
             var truck = new Truck();
-            truck.crewSize = req.body.crewSize;  // update the bears info
-            truck.startTime = 0;
-            truck.endTime = 0;
-            truck.avgTime = 0;
+            truck.crewSize = 1;  // update the bears info
+            truck.startTime = '6:30AM';
+            truck.endTime = '5:00PM';
+            truck.avgTime = '45';
             truck.save(function(err) {
                     if (err)
                         res.send(err);

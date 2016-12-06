@@ -22,13 +22,42 @@
             <md-card-actions layout="row" layout-align="center center">
               <md-input-container>
                 <label>Crew #</label>
-                <md-select ng-model="crewSizeSelected" ng-change="updateTruck(truck._id, crewSizeSelected);">
+                <md-select ng-model="crewSizeSelected" ng-change="updateTruck(truck._id, crewSizeSelected, startTimeSelected, endTimeSelected);">
                   <md-option ng-repeat="num in crewSize" ng-value="{{num.size}}" ng-selected="{{truck.crewSize === num.size ? 'true' : 'false' }}">
                     {{num.size}}
                   </md-option>
                 </md-select>
-              <md-button class="md-raised" ng-click="deleteTruck(truck._id);">Delete</md-button>
+              </md-input-container>
             </md-card-actions>
+            <md-card-actions layout="row" layout-align="center center">
+              <md-input-container>
+                <label>Start Time:</label>
+                <md-select ng-model="startTimeSelected" ng-change="updateTruckStartTime(truck._id, truck.crewSize, startTimeSelected, truck.endTime, truck.avgTime);">
+                  <md-option ng-repeat="time in timings" ng-value="time.time" ng-selected="{{truck.startTime === time.time ? 'true' : 'false' }}">
+                    {{time.time}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+              <md-input-container>
+                <label>End Time:</label>
+                <md-select ng-model="endTimeSelected" ng-change="updateTruck(truck._id, crewSizeSelected, startTimeSelected, endTimeSelected, avgTimeSelected);">
+                  <md-option ng-repeat="time in timings" ng-value="time.time" ng-selected="{{truck.endTime === time.time ? 'true' : 'false' }}">
+                    {{time.time}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </md-card-actions>
+            <md-card-actions layout="row" layout-align="center center">
+              <md-input-container>
+                <label>Avg Time:</label>
+                <md-select ng-model="avgTimeSelected" ng-change="updateTruck(truck._id, crewSizeSelected, startTimeSelected, endTimeSelected, avgTimeSelected);">
+                  <md-option ng-repeat="avg in avgTime" ng-value="avg.time" ng-selected="{{truck.avgTime === avg.time ? 'true' : 'false' }}">
+                    {{avg.time}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </md-card-actions>
+            <md-button class="md-raised" ng-click="deleteTruck(truck._id);">Delete</md-button>
           </md-card>
         </div>
     </div>
