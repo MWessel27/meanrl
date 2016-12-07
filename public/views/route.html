@@ -32,7 +32,7 @@
             <md-card-actions layout="row" layout-align="center center">
               <md-input-container>
                 <label>Start Time:</label>
-                <md-select ng-model="startTimeSelected" ng-change="updateTruckStartTime(truck._id, truck.crewSize, startTimeSelected, truck.endTime, truck.avgTime);">
+                <md-select ng-model="startTimeSelected" ng-change="updateTruck(truck._id, truck.crewSize, startTimeSelected, truck.endTime, truavgTime);">
                   <md-option ng-repeat="time in timings" ng-value="time.time" ng-selected="{{truck.startTime === time.time ? 'true' : 'false' }}">
                     {{time.time}}
                   </md-option>

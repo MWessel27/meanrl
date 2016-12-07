@@ -34,12 +34,11 @@ angular.module('RouteCtrl', []).controller('RouteController', function($scope, $
     }
 
     $scope.updateTruck = function(truckId, crewSize, startTime, endTime, avgTime) {
-      $http.put('http://localhost:8080/api/trucks/'+truckId, {'crewSize' : crewSize, 'startTime' : startTime, 'endTime' : endTime, 'avgTime' : avgTime});
+      if(truckId != null && crewSize != null && startTime != null && endTime != null && avgTime != null){
+        $http.put('http://localhost:8080/api/trucks/'+truckId, {'crewSize' : crewSize, 'startTime' : startTime, 'endTime' : endTime, 'avgTime' : avgTime});
+      }
     }
 
-    $scope.updateTruckStartTime = function(truckId, crewSize, startTime, endTime, avgTime) {
-      $http.put('http://localhost:8080/api/trucks/'+truckId, {'crewSize' : crewSize, 'startTime' : startTime, 'endTime' : endTime, 'avgTime' : avgTime});
-    }
     $scope.getAddresses = function() {
       $http.get('http://localhost:8080/api/routes/').
         then(function(response) {
